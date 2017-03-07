@@ -33,7 +33,7 @@ Test_Fun <- function(r, x) {
   exp(-(x - 2)^2) + exp(-(x - 6)^2/10) + 1/ (x^2 + 1) + r * 10e-10
 }
 OPT_Res <- Hyperband(Test_Fun, maximize = TRUE, bounds = list(x = c(-50, +50)),
-                     R = 1000L, R_unit = 1L, eta = 3, verbose = TRUE)
+                     R = 81L, R_unit = 10L, eta = 3, verbose = TRUE)
 \dontrun{
 # Example 2: Parameter Tuning
 library(xgboost)
@@ -53,6 +53,9 @@ XGB_CV_FUN <- function(nrounds, lambda, lambda_bias, alpha) {
 }
 OPT_Res <- Hyperband(XGB_CV_FUN, maximize = FALSE,
                      bounds = list(lambda = c(0, 5),lambda_bias = c(0L, 10L),alpha = c(0, 5)),
-                     R = 810L, R_unit = 1, eta = 3, verbose = TRUE)
+                     R = 1000L, R_unit = 1L, eta = 3, verbose = TRUE)
 }
+}
+\references{
+Lisha Li, Kevin Jamieson, Giulia DeSalvo, Afshin Rostamizadeh, Ameet Talwalkar (2016) \emph{Hyperband: A Novel Bandit-Based Approach to Hyperparameter Optimization}
 }
